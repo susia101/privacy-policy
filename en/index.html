@@ -88,7 +88,7 @@
 <body>
   <div class="container">
     <h1>Privacy Policy</h1>
-    <p class="updated">Effective Date: March 21, 2026 | Last Updated: March 21, 2026</p>
+    <p class="updated">Effective Date: April 23, 2026 | Last Updated: April 23, 2026</p>
 
     <p>This Privacy Policy describes how <strong>Gratitude Diary</strong> (the "App") collects, uses, shares, and protects your personal information. The developer (the "Operator") values your privacy and complies with applicable data protection laws.</p>
 
@@ -115,7 +115,7 @@
         </tr>
         <tr>
           <td>Gratitude diary entries</td>
-          <td>Core service functionality</td>
+          <td>Core service functionality, automated sentiment/keyword analysis, premium AI insights and recommendations (with consent)</td>
           <td>Until account deletion</td>
         </tr>
         <tr>
@@ -132,6 +132,11 @@
           <td>Device identifier, IP address</td>
           <td>Ad delivery (non-personalized)</td>
           <td>Anonymized immediately after collection</td>
+        </tr>
+        <tr>
+          <td>App usage events (screen views, sessions, etc.)</td>
+          <td>App quality improvement and analytics (Firebase Analytics)</td>
+          <td>Up to 14 months (Firebase Analytics default retention)</td>
         </tr>
         <tr>
           <td>Push notification token</td>
@@ -156,10 +161,13 @@
       <li><strong>Payment management:</strong> Processing premium subscriptions and ad-removal purchases</li>
       <li><strong>Notifications:</strong> Sending gratitude reminders and morning alerts</li>
       <li><strong>Advertising:</strong> Displaying non-personalized ads</li>
+      <li><strong>Sentiment and keyword analysis:</strong> Automated analysis of sentiment scores and key nouns in diary text for statistics and charts (applies to all users)</li>
+      <li><strong>AI insights (Premium only):</strong> Generating monthly AI insights and daily gratitude recommendations from diary text (with separate consent)</li>
+      <li><strong>Quality analytics:</strong> Collecting app usage events to improve the service</li>
     </ul>
 
     <h2>4. Sharing Your Information</h2>
-    <p>We do not sell or share your personal information with third parties except as described below.</p>
+    <p>We do not sell or share your personal information with third parties except as described below. None of the recipients use your data for model training; processing is limited to storage and the stated purpose.</p>
 
     <table>
       <thead>
@@ -167,23 +175,45 @@
           <th>Recipient</th>
           <th>Data Shared</th>
           <th>Purpose</th>
+          <th>Consent Type</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Google (Firebase)</td>
-          <td>Authentication data, diary entries</td>
+          <td>Google (Firebase Authentication / Firestore)</td>
+          <td>Authentication data, diary entries, profile</td>
           <td>Cloud data storage and authentication services</td>
+          <td>Agreed at sign-up</td>
+        </tr>
+        <tr>
+          <td>Google (Cloud Natural Language API)</td>
+          <td>Gratitude diary text</td>
+          <td>Automated sentiment and noun analysis (for all users; no training use)</td>
+          <td>Agreed at service use</td>
+        </tr>
+        <tr>
+          <td>Google (Gemini API)</td>
+          <td>Gratitude diary text, user display name</td>
+          <td>Premium AI insights and recommendations (no training use)</td>
+          <td><strong>Separate consent (revocable)</strong></td>
+        </tr>
+        <tr>
+          <td>Google (Firebase Analytics)</td>
+          <td>App usage events, device info, advertising ID</td>
+          <td>App quality improvement and analytics</td>
+          <td>Agreed at service use</td>
         </tr>
         <tr>
           <td>Google (AdMob)</td>
           <td>Device identifier, IP address</td>
           <td>Non-personalized ad delivery</td>
+          <td>Agreed at service use</td>
         </tr>
         <tr>
           <td>Google Play Store / Apple App Store</td>
           <td>Payment information</td>
           <td>In-app purchase processing</td>
+          <td>Agreed at purchase</td>
         </tr>
       </tbody>
     </table>
@@ -196,26 +226,48 @@
       <li>Local data stored on your device (notification settings, etc.) is automatically removed when the App is uninstalled.</li>
     </ul>
 
-    <h2>6. Advertising and Tracking</h2>
+    <h2>6. AI Feature Consent (Premium Only)</h2>
+    <div class="highlight">
+      <p>Premium subscribers who wish to use <strong>AI Insights and Gratitude Recommendations</strong> must provide separate consent for their diary text to be sent to Google LLC (Gemini API).</p>
+    </div>
+    <ul>
+      <li><strong>When consent is obtained:</strong> At premium subscription checkout, or at first use of AI features</li>
+      <li><strong>Data transferred:</strong> Gratitude diary text, user display name (for personalization)</li>
+      <li><strong>Purpose:</strong> Generation of monthly AI insights and daily gratitude recommendations</li>
+      <li><strong>Processing:</strong> The Gemini API does not use transmitted data for model training (Google's official policy).</li>
+      <li><strong>Retention:</strong> Data is transmitted transiently during the API call. Generated responses are stored in the user's Firestore document (<code>users/{uid}/recommendations</code>, <code>users/{uid}/insights</code>) and are deleted when the account is deleted.</li>
+      <li><strong>Revocation:</strong> You may revoke consent at any time via <strong>[Settings &gt; Revoke AI Feature Consent]</strong> inside the App.</li>
+    </ul>
+    <p>AI feature consent applies <strong>only to premium AI insights and recommendations via the Gemini API</strong>. Even if you decline or revoke consent, the following features remain available:</p>
+    <ul>
+      <li>Writing, saving, and viewing gratitude diary entries</li>
+      <li>Automated sentiment and noun analysis with charts (via Google Cloud Natural Language)</li>
+      <li>Premium subscription and ad-removal benefits</li>
+      <li>Streaks, XP, levels, and statistics features</li>
+    </ul>
+
+    <h2>7. Advertising and Tracking</h2>
     <div class="highlight">
       <p>This App displays <strong>non-personalized ads only</strong>. We do not track your interests or behavior for targeted advertising purposes.</p>
     </div>
     <ul>
       <li>Users who have purchased a premium subscription or the ad-removal product will not see any ads.</li>
       <li>We do not use third-party analytics or tracking SDKs (e.g., Amplitude, Mixpanel).</li>
+      <li>Google Firebase Analytics is used solely for app quality improvement analytics and is not used for personalized advertising tracking.</li>
     </ul>
 
-    <h2>7. Your Rights</h2>
+    <h2>8. Your Rights</h2>
     <p>You have the following rights regarding your personal data.</p>
     <ul>
       <li><strong>Right of access:</strong> You may request a summary of the personal data we hold about you.</li>
       <li><strong>Right to rectification or erasure:</strong> You may request correction or deletion of inaccurate information.</li>
       <li><strong>Right to restriction:</strong> You may request that we stop processing your personal data.</li>
+      <li><strong>AI feature consent revocation:</strong> You may revoke AI feature consent instantly at Settings &gt; Revoke AI Feature Consent.</li>
       <li><strong>Account deletion:</strong> You can delete your account at any time from the App's settings.</li>
     </ul>
     <p>To exercise any of these rights, please contact us at the address below and we will respond promptly.</p>
 
-    <h2>8. Data Security</h2>
+    <h2>9. Data Security</h2>
     <ul>
       <li>Passwords are stored in encrypted form and are not accessible to the Operator.</li>
       <li>All data transmission uses SSL/TLS encryption.</li>
@@ -223,13 +275,13 @@
       <li>Diary data is securely stored on Google Cloud (Firebase Firestore).</li>
     </ul>
 
-    <h2>9. Children's Privacy</h2>
-    <p>This App does not knowingly collect personal information from children under the age of 13 (or 16 where applicable under local law). If we become aware that a child under this age has provided us with personal data, we will delete it immediately.</p>
+    <h2>10. Children's Privacy</h2>
+    <p>This App does not knowingly collect personal information from children under the age of 13 (or 16 where applicable under local law). If we become aware that a child under this age has provided us with personal data, we will delete it immediately. Premium subscription and AI features are available only to users aged 14 and older.</p>
 
-    <h2>10. Changes to This Policy</h2>
+    <h2>11. Changes to This Policy</h2>
     <p>If this Privacy Policy changes, we will notify you at least 7 days before the changes take effect via an in-app notice or email. The updated policy will be posted on this page.</p>
 
-    <h2>11. Contact Us</h2>
+    <h2>12. Contact Us</h2>
     <div class="highlight">
       <p><strong>App Name:</strong> Gratitude Diary</p>
       <p><strong>Developer:</strong> Gratitude Diary Dev Team (Logblock)</p>
